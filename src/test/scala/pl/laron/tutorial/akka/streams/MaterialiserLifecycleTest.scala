@@ -1,8 +1,8 @@
 package pl.laron.tutorial.akka.streams
 
-import akka.actor.{ActorSystem, Props}
+import akka.actor.{ActorRef, ActorSystem, Props}
 import akka.stream.ActorMaterializer
-import akka.testkit.{TestKit, TestProbe}
+import akka.testkit.{TestActor, TestKit, TestProbe}
 import org.scalatest.FunSpecLike
 
 import scala.concurrent.ExecutionContextExecutor
@@ -35,8 +35,14 @@ class MaterialiserLifecycleTest extends TestKit(ActorSystem("EventStreamTest")) 
 
   it("should continue stream when actor is killed, as materialiser is provided from outside scope") {
     val probe = TestProbe()
-    val something = probe.childActorOf(Props(classOf[PrintSomeNumbers], materializer), "numbers")
-    probe.receiveN(10, 25 seconds) // just to keep test running
+    val something = probe.childActorOf(Props(classOf[PrintSomeNumbersExternalMaterializer], materializer), "numbers")
+    probe.setAutoPilot(new TestActor.AutoPilot {
+      def run(sender: ActorRef, msg: Any): TestActor.AutoPilot =
+        msg match {
+          case x: String ⇒ system.log.info("Probe " + x); TestActor.KeepRunning
+        }
+    })
+    probe.receiveN(10, 25 seconds)
 
     //no assert for now, I've just analyse console output what is going on
   }
