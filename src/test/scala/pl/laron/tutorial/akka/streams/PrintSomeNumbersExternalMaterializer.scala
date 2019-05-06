@@ -26,15 +26,15 @@ class PrintSomeNumbersExternalMaterializer(implicit val materializer: ActorMater
   context.setReceiveTimeout(5 seconds)
 
   override def preStart(): Unit = {
-    println("Starting numbers")
+    log.info("Starting numbers")
   }
 
   override def receive: Receive = {
     case "done" =>
-      println("Done")
+      log.info("Done")
       context.stop(self)
     case ReceiveTimeout =>
-      context.system.log.info("Receive timeout")
+      log.info("Receive timeout, stoppping actor")
       context.stop(self)
   }
 }
