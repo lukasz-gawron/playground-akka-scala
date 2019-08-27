@@ -17,6 +17,7 @@
     <scala-library.version>2.11.11</scala-library.version>
     <scalatest.version>3.0.3</scalatest.version>
     <akka-stream_2.11.version>2.5.17</akka-stream_2.11.version>
+    <quartz-scheduler.version>1.7.1-akka-2.5.x</quartz-scheduler.version>
   </properties>
 
   <dependencies>
@@ -41,6 +42,11 @@
       <artifactId>akka-testkit_2.11</artifactId>
       <version>${akka-stream_2.11.version}</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.enragedginger</groupId>
+      <artifactId>akka-quartz-scheduler_2.11</artifactId>
+      <version>${quartz-scheduler.version}</version>
     </dependency>
   </dependencies>
 
