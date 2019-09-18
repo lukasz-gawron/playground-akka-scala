@@ -17,7 +17,7 @@
     <scala-library.version>2.11.11</scala-library.version>
     <scalatest.version>3.0.3</scalatest.version>
     <akka-stream_2.11.version>2.5.17</akka-stream_2.11.version>
-    <quartz-scheduler.version>1.7.1-akka-2.5.x</quartz-scheduler.version>
+    <quartz-scheduler.version>1.8.1-akka-2.5.x</quartz-scheduler.version>
   </properties>
 
   <dependencies>
