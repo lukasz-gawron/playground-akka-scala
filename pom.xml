@@ -48,6 +48,13 @@
       <artifactId>akka-quartz-scheduler_2.11</artifactId>
       <version>${quartz-scheduler.version}</version>
     </dependency>
+    <!--        used for conversion between java.time.Duration and FiniteDuration,-->
+    <!--        maybe replaced on scala-lirabry upgrade Scala 2.13, there is a dedicated DurationConverter-->
+    <dependency>
+      <groupId>org.scala-lang.modules</groupId>
+      <artifactId>scala-java8-compat_2.11</artifactId>
+      <version>0.9.0</version>
+    </dependency>
   </dependencies>
 
   <build>
