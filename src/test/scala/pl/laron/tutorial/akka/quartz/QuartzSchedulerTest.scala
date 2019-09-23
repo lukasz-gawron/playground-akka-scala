@@ -1,10 +1,10 @@
-package pl.laron.tutorial.akka
+package pl.laron.tutorial.akka.quartz
 
 import java.time.format.DateTimeFormatter
 import java.time.{Instant, ZoneId}
 import java.util.TimeZone
 
-import akka.actor.ActorSystem
+import akka.actor.{ActorSystem, Props}
 import akka.testkit.{TestKit, TestProbe}
 import com.typesafe.akka.extension.quartz.QuartzSchedulerExtension
 import org.scalatest.FunSpecLike
@@ -20,7 +20,6 @@ class QuartzSchedulerTest extends TestKit(ActorSystem("QuartzSchedulerTest")) wi
   }
 
   it("start based on schedule in future") {
-
     val probe = TestProbe()
     scheduler
       .createSchedule(
@@ -35,7 +34,4 @@ class QuartzSchedulerTest extends TestKit(ActorSystem("QuartzSchedulerTest")) wi
     assert(scheduler.schedules.size == 1)
     probe.expectMsg(Ping)
   }
-
-  case object Ping {}
-
 }
