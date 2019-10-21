@@ -39,7 +39,9 @@ class MaterialiserLifecycleTest extends TestKit(ActorSystem("EventStreamTest")) 
     probe.setAutoPilot(new TestActor.AutoPilot {
       def run(sender: ActorRef, msg: Any): TestActor.AutoPilot =
         msg match {
-          case x: String ⇒ system.log.info("Probe " + x); TestActor.KeepRunning
+          case x: String ⇒
+            system.log.info("Probe received msg {}", x)
+            TestActor.KeepRunning
         }
     })
     probe.receiveN(10, 25 seconds)

@@ -1,5 +1,6 @@
 package pl.laron.tutorial.akka.streams
 
+import akka.Done
 import akka.actor.{Actor, ActorLogging, ActorRef, ReceiveTimeout}
 import akka.stream.ActorMaterializer
 import akka.stream.scaladsl.Source
@@ -20,18 +21,18 @@ class PrintSomeNumbersExternalMaterializer(implicit val materializer: ActorMater
       .runForeach(
         parentRef ! _
       )
-      .map(_ => self ! "done")
+      .map(_ => self ! _)
   }
 
   context.setReceiveTimeout(5 seconds)
 
   override def preStart(): Unit = {
-    log.info("Starting numbers")
+    log.info("preStart printing numbers actor")
   }
 
   override def receive: Receive = {
-    case "done" =>
-      log.info("Done")
+    case Done =>
+      log.info("Child actor done received, stoppping itself")
       context.stop(self)
     case ReceiveTimeout =>
       log.info("Receive timeout, stoppping actor")
