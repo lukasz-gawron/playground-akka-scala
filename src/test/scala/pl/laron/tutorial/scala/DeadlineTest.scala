@@ -10,8 +10,8 @@ import scala.compat.java8.DurationConverters._
 class DeadlineTest extends FunSpec {
   it("shows how deadline class may be used for waiting from some time to take action") {
     val now = Instant.now()
-    val kickOffGame1 = now.plusSeconds(10)
-    val untilPostMatch: FiniteDuration = java.time.Duration.between(now, kickOffGame1.plusSeconds(5))
+    val kickOffGame1 = now.plusSeconds(1)
+    val untilPostMatch: FiniteDuration = java.time.Duration.between(now, kickOffGame1.plusSeconds(1))
       .toScala
     val deadlineUntilPostMatchShouldBeTriggered = untilPostMatch.fromNow
     while(deadlineUntilPostMatchShouldBeTriggered.hasTimeLeft()) {
