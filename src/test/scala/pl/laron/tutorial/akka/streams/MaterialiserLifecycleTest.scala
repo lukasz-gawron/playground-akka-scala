@@ -44,9 +44,22 @@ class MaterialiserLifecycleTest extends TestKit(ActorSystem("EventStreamTest")) 
             TestActor.KeepRunning
         }
     })
-    probe.receiveN(10, 25 seconds)
+    probe.receiveN(10, 11 seconds)
 
     //no assert for now, I've just analyse console output what is going on
+    /**
+      * [INFO] [10/21/2019 12:35:31.334] [EventStreamTest-akka.actor.default-dispatcher-2] [akka.actor.ActorSystemImpl(EventStreamTest)] Probe received msg 1
+      * [INFO] [10/21/2019 12:35:32.356] [EventStreamTest-akka.actor.default-dispatcher-5] [akka.actor.ActorSystemImpl(EventStreamTest)] Probe received msg 2
+      * [INFO] [10/21/2019 12:35:33.343] [EventStreamTest-akka.actor.default-dispatcher-5] [akka.actor.ActorSystemImpl(EventStreamTest)] Probe received msg 3
+      * [INFO] [10/21/2019 12:35:34.351] [EventStreamTest-akka.actor.default-dispatcher-5] [akka.actor.ActorSystemImpl(EventStreamTest)] Probe received msg 4
+      * [INFO] [10/21/2019 12:35:35.351] [EventStreamTest-akka.actor.default-dispatcher-5] [akka.actor.ActorSystemImpl(EventStreamTest)] Probe received msg 5
+      * [INFO] [10/21/2019 12:35:36.342] [EventStreamTest-akka.actor.default-dispatcher-2] [akka://EventStreamTest/system/testProbe-2/numbers] Receive timeout, stoppping actor
+      * [INFO] [10/21/2019 12:35:36.352] [EventStreamTest-akka.actor.default-dispatcher-5] [akka.actor.ActorSystemImpl(EventStreamTest)] Probe received msg 6
+      * [INFO] [10/21/2019 12:35:37.351] [EventStreamTest-akka.actor.default-dispatcher-5] [akka.actor.ActorSystemImpl(EventStreamTest)] Probe received msg 7
+      * [INFO] [10/21/2019 12:35:38.350] [EventStreamTest-akka.actor.default-dispatcher-5] [akka.actor.ActorSystemImpl(EventStreamTest)] Probe received msg 8
+      * [INFO] [10/21/2019 12:35:39.351] [EventStreamTest-akka.actor.default-dispatcher-5] [akka.actor.ActorSystemImpl(EventStreamTest)] Probe received msg 9
+      * [INFO] [10/21/2019 12:35:40.350] [EventStreamTest-akka.actor.default-dispatcher-5] [akka.actor.ActorSystemImpl(EventStreamTest)] Probe received msg 10
+      */
   }
 }
 
